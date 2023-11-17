@@ -87,3 +87,7 @@ button:focus-visible {
 .link-active {
   text-decoration: underline;
 }
+
+footer {
+  margin-top: 20px;
+}
