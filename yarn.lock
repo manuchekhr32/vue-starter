@@ -264,6 +264,13 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
+"@types/node@^20.9.1":
+  version "20.9.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.1.tgz#9d578c610ce1e984adda087f685ace940954fe19"
+  integrity sha512-HhmzZh5LSJNS5O8jQKpJ/3ZcrrlG6L70hpGqMIAoM9YVD0YBRNWYsfwcXq8VnSjlNpCpgLzMXdiPo+dxcvSmiA==
+  dependencies:
+    undici-types "~5.26.4"
+
 "@types/semver@^7.5.0":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.5.tgz#deed5ab7019756c9c90ea86139106b0346223f35"
@@ -427,6 +434,11 @@
   dependencies:
     "@vue/compiler-dom" "3.3.8"
     "@vue/shared" "3.3.8"
+
+"@vue/devtools-api@^6.5.0":
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.5.1.tgz#7f71f31e40973eeee65b9a64382b13593fdbd697"
+  integrity sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==
 
 "@vue/language-core@1.8.22":
   version "1.8.22"
@@ -1351,6 +1363,11 @@ typescript@^5.2.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
+undici-types@~5.26.4:
+  version "5.26.5"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
+  integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
+
 uri-js@^4.2.2:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.4.1.tgz#9b1a52595225859e55f669d928f88c6c57f2a77e"
@@ -1386,6 +1403,13 @@ vue-eslint-parser@^9.3.1:
     esquery "^1.4.0"
     lodash "^4.17.21"
     semver "^7.3.6"
+
+vue-router@4:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.2.5.tgz#b9e3e08f1bd9ea363fdd173032620bc50cf0e98a"
+  integrity sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
 
 vue-template-compiler@^2.7.14:
   version "2.7.15"
