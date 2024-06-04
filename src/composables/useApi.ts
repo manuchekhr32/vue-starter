@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   CreateAxiosDefaults,
-} from "axios"
+} from 'axios'
 
 export const useApi = (apiUrl?: string) => {
   const baseURL = apiUrl || import.meta.env.VITE_APP_SERVER_URL

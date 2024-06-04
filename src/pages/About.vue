@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useMainStore } from "@/store"
+import { useMainStore } from '@/store'
 
 const store = useMainStore()
 </script>
