@@ -46,6 +46,7 @@ export const useApi = (apiUrl?: string) => {
     })
   }
 
+  // eslint-disable-next-line ts/no-explicit-any
   function $post<R = unknown, D = any>(
     url: string,
     data?: D,
@@ -59,6 +60,7 @@ export const useApi = (apiUrl?: string) => {
     })
   }
 
+  // eslint-disable-next-line ts/no-explicit-any
   function $put<R = unknown, D = any>(
     url: string,
     data?: D,
@@ -72,6 +74,7 @@ export const useApi = (apiUrl?: string) => {
     })
   }
 
+  // eslint-disable-next-line ts/no-explicit-any
   function $patch<R = unknown, D = any>(
     url: string,
     data?: D,

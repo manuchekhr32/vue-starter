@@ -6,7 +6,7 @@ import vuePlug from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
 
 export default [
-  ...vuePlug.configs['flat/essential'],
+  ...vuePlug.configs['flat/strongly-recommended'],
   {
     languageOptions: {
       parser: vueParser,
@@ -32,10 +32,17 @@ export default [
       quotes: ['warn', 'single'],
       semi: ['warn', 'never'],
       'no-undef': 'off',
+      // sis
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+      // ts
       'ts/no-unused-vars': 'warn',
       'ts/no-explicit-any': 'warn',
-      'vue/multi-word-component-names': 'off',
+      // prettier
       'prettier/prettier': 'warn',
+      // vue
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/max-attributes-per-line': 'off',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
     },

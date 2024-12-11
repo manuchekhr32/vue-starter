@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import { useMainStore } from '@/store'
+
+const store = useMainStore()
+</script>
+
 <template>
   <div>
     <h1>ABOUT PAGE</h1>
@@ -6,9 +12,3 @@
     </button>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useMainStore } from '@/store'
-
-const store = useMainStore()
-</script>

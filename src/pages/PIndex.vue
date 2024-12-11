@@ -1,12 +1,3 @@
-<template>
-  <div>
-    <h1>HOME PAGE</h1>
-    <button @click="store.count++">Increment {{ store.getCount }}</button>
-    <button @click="fetchData">Fetch data</button>
-    <pre v-if="todoData">{{ todoData }}</pre>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { ref } from 'vue'
 
@@ -28,3 +19,14 @@ async function fetchData() {
   }
 }
 </script>
+
+<template>
+  <div>
+    <h1>HOME PAGE</h1>
+
+    <button @click="store.count++">Increment {{ store.getCount }}</button>
+
+    <button @click="fetchData">Fetch data</button>
+    <pre v-if="todoData">{{ todoData }}</pre>
+  </div>
+</template>
