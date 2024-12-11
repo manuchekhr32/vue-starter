@@ -1,92 +1,62 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  CreateAxiosDefaults,
-} from 'axios'
+import { injectApi } from '@/plugins/api'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { shallowRef } from 'vue'
 
-export const useApi = (apiUrl?: string) => {
-  const baseURL = apiUrl || import.meta.env.VITE_APP_SERVER_URL
+type UseApiOptions<T> = Partial<{
+  onSuccess: (response: AxiosResponse<T>) => void
+  onError: (error: AxiosError) => void
+  onFinish: () => void
+  immediate?: boolean
+}>
 
-  const $service = (config?: CreateAxiosDefaults): AxiosInstance => {
-    const headers = {
-      ...config?.headers,
-      // Default headers
+export function useApi<T = unknown, D = any>(
+  endpoint: string | (() => string),
+  axiosOptions?: AxiosRequestConfig,
+  options?: UseApiOptions<T>,
+) {
+  const api = injectApi()
+  const data = shallowRef<T | null>(null)
+  const loading = shallowRef<boolean>(false)
+  const error = shallowRef<AxiosError | null>(null)
+
+  async function request(): Promise<
+    | {
+        data: T
+        error: null
+      }
+    | {
+        data: null
+        error: AxiosError
+      }
+  > {
+    try {
+      loading.value = true
+      const _endpoint = typeof endpoint === 'string' ? endpoint : endpoint()
+      const res = await api<T, AxiosResponse<T, any>, D>(
+        _endpoint,
+        axiosOptions,
+      )
+      data.value = res.data
+      error.value = null
+      if (options?.onSuccess) options.onSuccess(res)
+      return { data: res.data, error: null }
+    } catch (err: unknown) {
+      const _err = err as unknown as AxiosError
+      error.value = _err
+      data.value = null
+      if (options?.onError) options.onError(_err)
+      return { data: null, error: _err }
+    } finally {
+      loading.value = false
     }
-    const _axios = axios.create({
-      ...config,
-      baseURL,
-      headers,
-    })
-    // Use interceptors here
-    return _axios
   }
 
-  function $get<R = unknown>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<R>> {
-    return new Promise((resolve, reject) => {
-      $service()
-        .get<R>(url, config)
-        .then((response) => resolve(response))
-        .catch((error) => reject(error))
-    })
-  }
+  if (options?.immediate) request()
 
-  function $delete<R = unknown>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<R>> {
-    return new Promise((resolve, reject) => {
-      $service()
-        .delete<R>(url, config)
-        .then((response) => resolve(response))
-        .catch((error) => reject(error))
-    })
+  return {
+    data,
+    loading,
+    error,
+    request,
   }
-
-  // eslint-disable-next-line ts/no-explicit-any
-  function $post<R = unknown, D = any>(
-    url: string,
-    data?: D,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<R>> {
-    return new Promise((resolve, reject) => {
-      $service()
-        .post<R>(url, data, config)
-        .then((response) => resolve(response))
-        .catch((error) => reject(error))
-    })
-  }
-
-  // eslint-disable-next-line ts/no-explicit-any
-  function $put<R = unknown, D = any>(
-    url: string,
-    data?: D,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<R>> {
-    return new Promise((resolve, reject) => {
-      $service()
-        .put<R>(url, data, config)
-        .then((response) => resolve(response))
-        .catch((error) => reject(error))
-    })
-  }
-
-  // eslint-disable-next-line ts/no-explicit-any
-  function $patch<R = unknown, D = any>(
-    url: string,
-    data?: D,
-    config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<R>> {
-    return new Promise((resolve, reject) => {
-      $service()
-        .patch<R>(url, data, config)
-        .then((response) => resolve(response))
-        .catch((error) => reject(error))
-    })
-  }
-
-  return { $get, $delete, $post, $patch, $put }
 }
